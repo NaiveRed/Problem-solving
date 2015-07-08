@@ -1,3 +1,6 @@
+/*
+time: 0.255s
+*/
 #include<stdio.h>
 #include<limits.h>
 int length[1000000] = { 0, 1 };
