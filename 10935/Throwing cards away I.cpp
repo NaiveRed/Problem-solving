@@ -11,7 +11,7 @@ int main()
 
 		bool first(true);
 		for (int i = 1; i <= num; i++)
-			deck.push(i);
+			deck.emplace(i);
 
 		printf("Discarded cards:");
 		while (deck.size() != 1)
@@ -23,7 +23,7 @@ int main()
 
 			deck.pop();
 
-			deck.push(deck.front());
+			deck.emplace(deck.front());
 
 			deck.pop();
 
