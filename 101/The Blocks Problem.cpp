@@ -3,7 +3,7 @@
 #include<cstring>
 #define N 25
 
-typedef struct POS
+struct POS
 {
 	int column;
 	int row;
