@@ -1,6 +1,6 @@
-# UVa-solution
+# Problem-solving
 
-The practicing of UVa Online Judge.(HungChungChun)
+The practicing of Online Judge and some problems.
 
 主要是拿來存放練習的程式碼，如果有 # 符號是比較久前寫的，寫的可能並不好!
 
