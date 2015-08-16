@@ -25,8 +25,9 @@ int main()
 }
 void eratosthenes()
 {
+	int _sqrt(sqrt(N - 1));
 
-	for (int i = 2; i <= sqrt(N - 1); i++)
+	for (int i = 2; i <= _sqrt; i++)
 		/*
 		sqrt()穦sqrt()notPrime[i]计购 ex. sqrt(10)=3...  10=2*5=5*2  5>sqrt(10)
 		计 x ゲ﹚Τ单 sqrt(x) 借计┮Τ单 sqrt(x) 借计奔硂ㄇ借计计碞奔┮Τ计
