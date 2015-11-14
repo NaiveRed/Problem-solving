@@ -68,16 +68,17 @@ node* buildTree(int* in_begin, int* in_end, int post_index)
 	
 	左子樹的根節點(lchild)為 post_index-(in_end-pos)
 				
-	in_begin   pos	  in_end
-		  v 	v       v
+ in_begin(3)   pos(4) in_end(x)
+          v     v       v
 	in:   3 2 1 4 5 7 6 x
 	post: 3 1 2 5 6 7 4 x
-              ^     ^ ^----post_index
+              ^     ^ ^----post_index(4)
               ^     ^
-			  ^   root of right subtree    
-			  ^
-       root of left subtree
+              ^    root of right subtree(7)
+              ^
+    root of left subtree(2)
 
+	(排版可能跑掉，以後面數字為主)
 	利用 postorder ， Left-Right-Val 的特性，把右子樹的點給跳過。
 	
 	另一方法可用vector之類的先處理右邊，邊建樹邊pop掉postorder，剩下的就可直接用postorder處理左子樹。
