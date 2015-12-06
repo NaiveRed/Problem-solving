@@ -2,7 +2,7 @@
 
 int num[15], ans[7];
 
-void back(int len, int pos, int& total);//Backtraking
+void back(int len, int pos, int& total);//Backtracking
 int main()
 {
 	int n;
