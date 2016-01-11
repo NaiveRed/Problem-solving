@@ -101,7 +101,7 @@ int correspondToMin(int idx)
 }
 void insertMinHeap(Deap* d, int idx, int num)
 {
-	while (idx > 2 && num < d->arr[PARENT(idx)])//the root of max heap is 2
+	while (idx > 2 && num < d->arr[PARENT(idx)])//the root of min heap is 2
 	{
 		d->arr[idx] = d->arr[PARENT(idx)];
 		idx = PARENT(idx);
