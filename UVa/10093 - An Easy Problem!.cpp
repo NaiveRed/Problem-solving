@@ -1,8 +1,7 @@
 /*
 參考:http://woriheck.blogspot.tw/2013/08/10093-easy-problem.html
-
-若一個n進位的數可以被n - 1整除，則它每個位數的總和也會被n - 1整除。
-
+說明:http://naivered.github.io/2016/01/25/UVa-10093-An-Easy-Problem/
+若 n - 1 可以將某數 每個位數的總和 整除，則此數在 n 進位時可被 n - 1 整除。
 */
 #include<cstdio>
 #include<cstring>
