@@ -4,29 +4,36 @@ KMP: http://www.csie.ntnu.edu.tw/~u91029/StringMatching.html#3
 */
 #include<cstdio>
 #include<cstring>
-#define N 1000001
+#define N 81
 
 int fail[N];
 int failure(char *str, int len);//failure function
 int main()
 {
+    int Case;
+    scanf("%d", &Case);
+    getchar();
+
     char str[N];
-    while (gets(str))
+    while (Case--)
     {
+        getchar();
+        gets(str);
         int len = strlen(str);
-        if (len == 1 && str[0] == '.')
-            break;
 
         //總長 - "次長的相同前綴後綴"的長度(去掉尾巴一樣的)，即是要重複的片段
         int dupli = len - (failure(str, len) + 1);
         int ans;
 
         if (len%dupli)
-            ans = 1;
+            ans = len;
         else
-            ans = len / dupli;
+            ans = dupli;
 
         printf("%d\n", ans);
+
+        if (Case)
+            putchar('\n');
     }
 
     return 0;

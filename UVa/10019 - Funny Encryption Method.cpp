@@ -11,7 +11,7 @@ int main()
         scanf("%d", &n);
         m = n;
 
-        //decimal
+        //binary
         while (n)
         {
             if (n % 2)
