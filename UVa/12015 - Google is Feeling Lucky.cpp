@@ -17,8 +17,8 @@ int main()
         for (int j = 0; j < 10; j++)
             scanf("%s%d", search[j].str, &search[j].relevance);
 
-        std::sort(search, search + 10, [](const Data& a, const Data& b)->bool{ return a.relevance > b.relevance; });
-        
+        std::stable_sort(search, search + 10, [](const Data& a, const Data& b)->bool{ return a.relevance > b.relevance; });
+
         printf("Case #%d:\n", i);
         int r = search[0].relevance;
         puts(search[0].str);
