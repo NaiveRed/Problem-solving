@@ -24,7 +24,7 @@ int main()
           
             for (int i = 0; i < p&&prime[i] <= n; i++)
             {
-                //因式分解
+                //質因數分解
                 int count = 1;
                 while (!(n%prime[i]))
                 {
