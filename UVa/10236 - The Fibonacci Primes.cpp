@@ -8,7 +8,7 @@ bool sieve[MAX];
 int prime[M];
 void getPrime();
 
-long double fib[N] = { 0, 1 };
+double fib[N] = { 0, 1 };
 void getFibPrime();
 int main()
 {

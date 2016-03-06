@@ -73,7 +73,7 @@ int dijkstra(int n, int m)
         }
 
         //¤w¸g§ä§¹
-        if (next_x == -1)
+        if (next_x == -1 || (next.x == n&&next.y == m))
             break;
 
         isVisit[next_x][next_y] = true;
