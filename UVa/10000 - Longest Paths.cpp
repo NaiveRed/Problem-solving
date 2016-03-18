@@ -30,10 +30,8 @@ pair<int, int> SPFA(int s, int n)
 {
     int d[101] = {};
     bool inQ[101] = {};
-    int parent[101] = {};
     queue<int> Q;
     Q.push(s);
-    parent[s] = s;
 
     while (!Q.empty())
     {
