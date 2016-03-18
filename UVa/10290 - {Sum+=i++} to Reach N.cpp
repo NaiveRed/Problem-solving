@@ -1,6 +1,6 @@
 #include<cstdio>
 #include<cmath>
-#define N 1000000//1000000
+#define N 5000000
 #define M 400000
 typedef long long LL;
 
