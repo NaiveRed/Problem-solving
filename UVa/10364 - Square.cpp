@@ -54,6 +54,10 @@ bool backtracking(int n, int len, int now, int idx)//(棍子數,目前連接的長度,完成
                     return true;
 
                 used[i] = false;
+
+                //待會就算用別根完成了現在這一邊，最後還是有邊無法完成
+                if (len + stick[i] == side_length)
+                    return false;
             }
         }
     }
