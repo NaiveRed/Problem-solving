@@ -38,7 +38,7 @@ int main()
 
     return 0;
 }
-bool backtracking(int idx, int count, int now, int len)
+bool backtracking(int idx, int count, int now, int len)//(目前index,已使用棍子數,目前長度,目標長度)
 {
     //完成一根完整的棍子
     if (now == len)
