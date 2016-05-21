@@ -72,7 +72,7 @@ void prim(int n)
     bool isVisit[N] = {}, flag = true;
     for (i = 0; i < n; i++)
         d[i] = 1e9;
-    priority_queue<Node, vector<Node>, greater<> > PQ;
+    priority_queue<Node, vector<Node>, greater<Node> > PQ;
     PQ.push(Node(0, 0));
     d[0] = 0;
 
