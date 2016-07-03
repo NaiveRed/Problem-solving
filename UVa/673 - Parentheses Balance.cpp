@@ -4,49 +4,42 @@
 
 int main()
 {
-	std::stack<char> parentheses;
-	int n;
-	
-	while (scanf("%d",&n)!=EOF)
-	{
-		getchar();//scanf("\r")
-		while (n--)
-		{
-			char s[N]{NULL};
-			
-			gets(s);//¿é¤J¤£¥u()[] e.g. ()fsdfsdf[]
-			
-			for (int i = 0; s[i]; i++)
-			{
-				if (s[i] == '(' || s[i] == '[')
-					parentheses.push(s[i]);
-				else if (s[i] == ')')
-				{
-					if (!parentheses.empty())
-					{
-						if (parentheses.top() == '(')
-							parentheses.pop();
-					}
-					else parentheses.push(')');
-				}
-				else if (s[i] == ']')
-				{
-					if (!parentheses.empty())
-					{
-						if (parentheses.top() == '[')
-							parentheses.pop();
-					}
-					else parentheses.push(']');
-				}
-			}
+    std::stack<char> parentheses;
+    int n,i;
+    char s[N] = { NULL };
+    scanf("%d", &n);
 
-			printf("%s\n", parentheses.empty() ? "Yes" : "No");
-		
-			while (!parentheses.empty())
-				parentheses.pop();
-		}
+    getchar();
+    while (n--)
+    {
+        fgets(s, N, stdin);
 
-	}
+        for (i = 0; s[i] != '\n'; i++)
+        {
+            if (s[i] == '(' || s[i] == '[')
+                parentheses.push(s[i]);
+            else if (s[i] == ')')
+            {
+                if (!parentheses.empty() && parentheses.top() == '(')
+                    parentheses.pop();
+                else
+                    break;
+            }
+            else if (s[i] == ']')
+            {
+                if (!parentheses.empty() && parentheses.top() == '[')
+                    parentheses.pop();
+                else
+                    break;
+            }
+        }
 
-	return 0;
+        printf("%s\n", parentheses.empty() && s[i] == '\n' ? "Yes" : "No");
+
+        while (!parentheses.empty())
+            parentheses.pop();
+    }
+
+
+    return 0;
 }
