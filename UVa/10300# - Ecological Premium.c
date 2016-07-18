@@ -2,26 +2,22 @@
 
 int main(){
 
-	unsigned int set, farmer, i, size, animal, num;
+    int set, farmer, i, size, animal, num;
 
-	while (scanf("%u", &set) != EOF)
-	{
-		while (set)
-		{
-			unsigned int sum = 0;
-			scanf("%u", &farmer);
-			for (i = 1; i <= farmer; i++)
-			{
-				scanf("%u %u %u", &size, &animal, &num);
-				sum += (size*num);
-			}
+    scanf("%d", &set);
 
-			printf("%u\n", sum);
+    while (set--)
+    {
+        long long sum = 0;
+        scanf("%d", &farmer);
+        for (i = 1; i <= farmer; i++)
+        {
+            scanf("%d%d%d", &size, &animal, &num);
+            sum += ((long long)size*num);
+        }
 
+        printf("%lld\n", sum);
+    }
 
-			set--;
-		}
-
-	}
-	return 0;
+    return 0;
 }

@@ -1,46 +1,43 @@
 #include<stdio.h>
 
 long long re(long long n);//盢计腁
-
 int main(){
 
-	int set;
-	long long num, temp;
+    int set;
+    long long num, temp;
 
-	while (scanf("%d", &set) != EOF)
-	{
-		for (; set > 0; set--)
-		{
-			scanf("%lld", &num);
+    while (scanf("%d", &set) != EOF)
+    {
+        for (; set > 0; set--)
+        {
+            scanf("%lld", &num);
 
-			int count = 0;
+            int count = 0;
 
+            //while ( (temp = re(num)) != num||!count)//zeorjudge  碞癹ゅご惠暗Ω膥尿耞
+            while ((temp = re(num)) != num)//盢计腁耞琌癹ゅ
+            {
+                num += temp;//セ腁Θ穝计
+                count++;
 
-			while ((temp = re(num)) != num)//盢计腁耞琌癹ゅ
-			{
-				num += temp;//セ腁Θ穝计
-				count++;
+            }
 
-			}
+            printf("%d %lld\n", count, temp);
+        }
 
-			printf("%d %lld\n", count, temp);
-		}
-
-	}
-	return 0;
+    }
+    return 0;
 }
 
 long long re(long long n)
 {
-	long long temp = 0;
+    long long temp = 0;
 
+    while (n)
+    {
+        temp = temp * 10 + n % 10;
+        n /= 10;
 
-	while (n)
-	{
-		temp = temp * 10 + n % 10;
-		n /= 10;
-
-	}
-	return temp;
-
+    }
+    return temp;
 }
