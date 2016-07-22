@@ -1,7 +1,7 @@
 /*
 http://www.csie.ntnu.edu.tw/~u91029/LongestIncreasingSubsequence.html#3
 */
-include<cstdio>
+#include<cstdio>
 #include<vector>
 #define N 100000
 using namespace std;
