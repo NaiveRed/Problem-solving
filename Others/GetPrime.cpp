@@ -49,7 +49,8 @@ void eratosthenes()
 			prime[count++] = i;
 
 }
-void linear_sieve()
+//http://debug18.com/introduction-to-sieve-method/
+void linear_sieve()//Euler 篩法
 {
 	//一邊輸入質數表，一邊刪掉每個數的質數倍，如此每個合數就只讀取一次!
 	int count(0);
