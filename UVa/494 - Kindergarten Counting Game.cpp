@@ -7,10 +7,12 @@ int main()
 	int count(0);
 	bool flag(false);
 
-	while ((c = getchar())!=EOF)
+	while ((c = getchar()) != EOF)
 	{
 		if (c == '\n')
 		{
+			if (flag)
+				count++;
 			printf("%d\n", count);
 
 			count = 0;
@@ -21,7 +23,7 @@ int main()
 		if (isalpha(c))
 		{
 			if (!flag)
-			flag = true;
+				flag = true;
 		}
 		else if (flag)
 		{

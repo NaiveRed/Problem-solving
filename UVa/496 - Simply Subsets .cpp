@@ -29,12 +29,13 @@ int main()
 		while (ss >> temp)
 			set2.insert(temp);
 
-		int diff_buf[100]{0};
+		int diff_buf[100]{ 0 };
 
 		int diff(set_intersection(set1.begin(), set1.end(), set2.begin(), set2.end(), diff_buf) - diff_buf);
 
 		int n(set1.size()), m(set2.size());
 
+		//if (!diff && (n && m)) //zerojudge 上處理空集合
 		if (!diff)
 			cout << "A and B are disjoint\n";
 		else if (diff == MIN(n, m))
