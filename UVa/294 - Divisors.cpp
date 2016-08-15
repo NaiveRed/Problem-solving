@@ -4,80 +4,70 @@
 #define M 50000
 
 int prime[M];
-bool sieve[N]{true, true};
+bool sieve[N]{ true, true };
 
-inline int input();
 inline void getPrime();
 int main()
 {
-	getPrime();
-	int Case(input());
+    getPrime();
+    int Case;
+    scanf("%d", &Case);
 
-	while (Case--)
-	{
+    while (Case--)
+    {
 
-		int a(input()), b(input());
-		int max(0), max_count(0);
+        int a, b;
+        int max = 0, max_count = 0;
 
-		for (int i = a; i <= b; i++)
-		{
-			int total(1), temp(i);
+        scanf("%d%d", &a, &b);
+        for (int i = a; i <= b; i++)
+        {
+            int total = 1, temp = i;
 
-			//短除法
-			for (int j = 0; prime[j] <= temp&&prime[j]; j++)
-			{
-				int count(0);
-				while (!(temp%prime[j]))
-				{
-					temp /= prime[j];
-					count++;
-				}
+            for (int j = 0; prime[j] && prime[j] * prime[j] <= temp; j++)
+            {
+                int count(0);
+                while (!(temp%prime[j]))
+                {
+                    temp /= prime[j];
+                    count++;
+                }
 
-				total = total*(count + 1);//ex. 72=2^3 * 3^2  總共為 (3+1)*(2+1)
-			}
+                total *= (count + 1);
+            }
 
-			if (total > max_count)
-			{
-				max_count = total;
-				max = i;
-			}
-		}
+            if (temp != 1)
+                total <<= 1;
 
-		printf("Between %d and %d, %d has a maximum of %d divisors.\n", a, b, max, max_count);
+            if (total > max_count)
+            {
+                max_count = total;
+                max = i;
+            }
+        }
 
-	}
-	return 0;
+        printf("Between %d and %d, %d has a maximum of %d divisors.\n", a, b, max, max_count);
+
+    }
+    return 0;
 }
-int input()
+inline void getPrime()
 {
+    int _sqrt = sqrt(N - 1);
 
-	char c;
-	int num(0);
+    for (int i = 2; i < _sqrt; i++)
+    {
 
-	while ((c = getchar()) != ' '&&c != '\n')
-		num = num * 10 + c - '0';
+        if (!sieve[i])
+            for (int k = (N - 1) / i; k >= i; k--)
+                if (!sieve[k])
+                    sieve[k*i] = true;
+    }
 
-	return num;
-}
-void getPrime()
-{
-	int _sqrt = sqrt(N - 1);
-
-	for (int i = 2; i < _sqrt; i++)
-	{
-
-		if (!sieve[i])
-			for (int k = (N - 1) / i; k >= i; k--)
-				if (!sieve[k])
-					sieve[k*i] = true;
-	}
-
-	int count(0);
-	for (int i = 0; i < N; i++)
-	{
-		if (!sieve[i])
-			prime[count++] = i;
-	}
-
-
+    int count(0);
+    for (int i = 0; i < N; i++)
+    {
+        if (!sieve[i])
+            prime[count++] = i;
+    }
 }

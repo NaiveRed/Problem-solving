@@ -1,36 +1,37 @@
 #include<cstdio>
-#include<cmath>
-#include<cstring>
+#include<iostream>
+#include<string>
+using namespace std;
 
 int main()
 {
-	int test;
-	char str[10000];
+    int test;
+    string str;
+    int square[10001] = {};
 
-	while (scanf("%d", &test) != EOF)
-	{
+    for (int i = 1; i <= 100; i++)
+        square[i*i] = i;
 
-		getchar();
-		while (test--)
-		{
-			gets(str);
-			int len = strlen(str);
+    scanf("%d", &test);
+    getchar();
 
-			
-				double dSqrt = sqrt((double)len);
-				int iSqrt = (int)dSqrt;
-				if (iSqrt == dSqrt)
-				{
-					for (int i = 0; i < iSqrt; i++)
-						for (int offset = 0; offset < len; offset += iSqrt)
-							printf("%c", str[i + offset]);
-					puts("");
-				}
-				else puts("INVALID");
-		
-		}
+    while (test--)
+    {
+        getline(cin, str);
+        int len = str.length();
 
-	}
+        int Sqrt = square[len];
+        if (Sqrt)
+        {
+            for (int i = 0; i < Sqrt; i++)
+                for (int r = 0; r < Sqrt; r++)
+                    putchar(str[i + r*Sqrt]);
+            putchar('\n');
+        }
+        else
+            puts("INVALID");
+       
+    }
 
-	return 0;
+    return 0;
 }
