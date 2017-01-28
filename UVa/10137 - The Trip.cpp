@@ -23,7 +23,7 @@ int main()
 		int avg(sum / student);
 		
 		int n(sum % student);//因為無法除盡，需要有人多給的人數
-		printf("%d,%d\n", avg, n);
+		//printf("%d,%d\n", avg, n);
 		std::sort(expense, expense + student, [](int a, int b){return a > b; });
 
 		int diff(0);
