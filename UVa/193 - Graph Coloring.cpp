@@ -1,87 +1,92 @@
-#include<cstdio>
-#include<list>
-#include<algorithm>
+#include <cstdio>
+#include <list>
+#include <algorithm>
 
 std::list<int> adjList[101];
 std::list<int> black;
-int vertex;//the number of points
-int max;//the number of black points
-int optima[100];//the ans
-bool color[101];//false is white,true is black
+int vertex;      //the number of points
+int max;         //the number of black points
+int optima[100]; //the ans
+bool color[101]; //false is white,true is black
 
 void backtracking(int point);
 int main()
 {
-	int Case;
+    int Case;
 
-	scanf("%d", &Case);
-	
-	while (Case--)
-	{
-		int  e;//edge
-		scanf("%d%d", &vertex, &e);
-		
-		while (e--)
-		{
-			int a, b;
-			scanf("%d%d", &a, &b);
-			adjList[a].push_back(b);
-			adjList[b].push_back(a);
-		}
+    scanf("%d", &Case);
 
-		backtracking(1);
+    while (Case--)
+    {
+        int e; //edge
+        scanf("%d%d", &vertex, &e);
 
-		printf("%d\n", max);
-		for (int i = 0; i < max - 1; i++)
-			printf("%d ", optima[i]);
-		printf("%d\n", optima[max - 1]);
+        while (e--)
+        {
+            int a, b;
+            scanf("%d%d", &a, &b);
+            adjList[a].push_back(b);
+            adjList[b].push_back(a);
+        }
 
-		//init
-		max = 0;
-		for (int i = 1; i <= vertex; i++)
-			adjList[i].clear();
+        backtracking(1);
 
-	}
+        printf("%d\n", max);
+        for (int i = 0; i < max - 1; i++)
+            printf("%d ", optima[i]);
+        printf("%d\n", optima[max - 1]);
 
-	return 0;
+        //init
+        max = 0;
+        for (int i = 1; i <= vertex; i++)
+            adjList[i].clear();
+    }
+
+    return 0;
 }
 void backtracking(int point)
 {
 
-	if (point > vertex)
-	{
-		int temp = black.size();
-		if (temp > max)
-		{
-			int i = 0;
-			for (int n : black)
-				optima[i++] = n;
-			max = temp;
-		}
+    if (point > vertex)
+    {
+        int temp = black.size();
+        if (temp > max)
+        {
+            int i = 0;
+            for (int n : black)
+                optima[i++] = n;
+            max = temp;
+        }
+    }
+    else if (vertex - point + 1 + black.size() < max) 
+    {
+        //å‰©ä¸‹çš„é»žå…¨é»‘ä¹Ÿæ²’è¾¦æ³•è¶…éŽç›®å‰æœ€ä½³çš„è©±å°±åœæ­¢
+        return;
+    }
+    else
+    {
+        bool isBlack = true;
+        for (int n : adjList[point])
+            if (color[n])
+            {
+                isBlack = false;
+                break;
+            }
 
-	}
-	else
-	{
-		bool isBlack = true;
-		for (int n : adjList[point])
-			if (color[n])
-				isBlack = false;
+        if (isBlack)
+        {
+            //æ­¤é»žç‚ºé»‘è‰²çš„æƒ…æ³ä¸‹ç¹¼çºŒåšéžè¿´
+            color[point] = true;
+            black.push_back(point);
 
-		if (isBlack)
-		{
-			//¦¹ÂI¬°¶Â¦âªº±¡ªp¤UÄ~Äò°µ»¼°j
-			color[point] = true;
-			black.push_back(point);
-			
-			backtracking(point+1);
+            backtracking(point + 1);
 
-			//´«¦¨¦¹ÂI¬°¥Õ¦â
-			color[point] = false;
-			black.pop_back();
-		}
+            //æ›æˆæ­¤é»žç‚ºç™½è‰²
+            color[point] = false;
+            black.pop_back();
+        }
 
-		//¦¹ÂI¬°¥Õ¦âªº±¡ªp¤U°µ»¼°j
-		backtracking(point + 1);
-	}
-
+        //æ­¤é»žç‚ºç™½è‰²çš„æƒ…æ³ä¸‹åšéžè¿´
+        backtracking(point + 1);
+    }
 }
