@@ -2,7 +2,7 @@
 #include <cstring>
 #include <cctype>
 #include <algorithm>
-#define N 100
+#define N 105
 
 bool used[N];
 char ans[N];
@@ -29,7 +29,7 @@ void backtrack(char *str, int now, const int &len)
     }
 }
 int main()
-{  
+{
     int n;
     char str[N];
     scanf("%d ", &n);
@@ -43,10 +43,10 @@ int main()
         std::sort(str, str + len,
                   [](const char &a, const char &b) -> bool {
                       char aa = tolower(a), bb = tolower(b);
-                      if (aa != bb)                                     //字母不同
-                          return aa < bb;                               //比順序
-                      else                                              //字母一樣，但可能一個大寫
-                          return (a >= 'A' && a <= 'Z') ? true : false; //大寫在前
+                      if (aa != bb)       //字母不同
+                          return aa < bb; //比順序
+                      else                //字母一樣，但可能一個大寫
+                          return a < b;   //大寫在前
                   });
 
         backtrack(str, 0, len);
