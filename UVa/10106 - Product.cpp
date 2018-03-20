@@ -1,64 +1,80 @@
-#include<cstdio>
+#include <cstdio>
 
 int main()
 {
+    char temp;
 
-	char temp;
+    while ((temp = getchar()) != EOF)
+    {
+        while (temp == '0')
+            temp = getchar();
 
-	while ((temp = getchar()) != EOF)
-	{
+        int x[255]{}, y[255]{};
 
-		int x[251]{temp - '0'}, y[251]{0};
+        //è®€å…¥æ•¸å­—ï¼Œæœ€é«˜ä½åœ¨x[0]
+        int i(1);
+        if (temp == '\n')
+            x[0] = 0;
+        else
+        {
+            x[0] = temp - '0';
+            while ((temp = getchar()) != '\n')
+                x[i++] = temp - '0';
+        }
 
-		//Åª¤J¼Æ¦r¡A³Ì°ª¦ì¦bx[0]
-		int i(1);
-		while ((temp = getchar()) != '\n')
-			x[i++] = temp - '0';
+        int j(1);
+        temp = getchar();
+        while (temp == '0')
+            temp = getchar();
+        if (temp == '\n')
+            y[0] = 0;
+        else
+        {
+            y[0] = temp - '0';
+            while ((temp = getchar()) != '\n')
+                y[j++] = temp - '0';
+        }
 
-		int j(0);
-		while ((temp = getchar()) != '\n')
-			y[j++] = temp - '0';
+        int ans[510]{0};
+        for (int n = i - 1; n >= 0; n--)
+            for (int m = j - 1; m >= 0; m--)
+                ans[n + m] = ans[n + m] + x[n] * y[m]; //å¦‚ç›´å¼ä¹˜æ³•: xçš„nä½ * yçš„mä½ = ansçš„ n+m ä½ å†åŠ ä¸Šä¹‹å‰å·²åŠ éçš„
 
-		int ans[501]{0};
-		for (int n = i-1 ; n >= 0; n--)
-			for (int m = j - 1; m >= 0; m--)
-				ans[n + m] = ans[n + m] + x[n] * y[m];//¦pª½¦¡­¼ªk: xªºn¦ì * yªºm¦ì = ansªº n+m ¦ì ¦A¥[¤W¤§«e¤w¥[¹Lªº
+        int len(i + j - 2); //n + m = i - 1 + j - 1
 
-		int len(i+j-2);//n + m = i - 1 + j - 1 
-		
-		//¶i¦ì³B²z¡A±q³Ì§C¦ì¶}©l
-		while (len >0)
-		{
-			
-			if (ans[len] >= 10)
-			{
-				ans[len - 1] += (ans[len ] / 10);
-				ans[len] %= 10;
-			}
+        //é€²ä½è™•ç†ï¼Œå¾æœ€ä½ä½é–‹å§‹
+        while (len > 0)
+        {
 
-			len--;
-		}
-		len = i + j - 2;
+            if (ans[len] >= 10)
+            {
+                ans[len - 1] += (ans[len] / 10);
+                ans[len] %= 10;
+            }
 
-		//³B²z²Ä¤@¦ì¼Æ­n¶i¦ìªº±¡ªp(¦]¬°ans[index],index¤£¥i¬°-1)
-		if (ans[0] >= 10)
-		{
-			int first = (ans[0] / 10);
-			ans[0] %= 10;
-			putchar(first + '0');
-		}
-		//³B²zµª®×¬°0ªº±¡ªp
-		else if (!ans[0] )
-		{
-			puts("0");
-			continue;
-		}
+            len--;
+        }
+        len = i + j - 2;
 
-		for (int n = 0; n <= len; n++)
-			putchar(ans[n] + '0');
-			
-		putchar('\n');
-	}
+        //è™•ç†ç¬¬ä¸€ä½æ•¸è¦é€²ä½çš„æƒ…æ³(å› ç‚ºans[index],indexä¸å¯ç‚º-1)
+        if (ans[0] >= 10)
+        {
+            int first = (ans[0] / 10);
+            ans[0] %= 10;
+            putchar(first + '0');
+        }
+        //è™•ç†ç­”æ¡ˆç‚º0çš„æƒ…æ³
+        else if (!ans[0])
+        {
+            puts("0");
+            continue;
+        }
 
-	return 0;
+        for (int n = 0; n <= len; n++)
+            putchar(ans[n] + '0');
+
+        putchar('\n');
+    }
+
+    return 0;
 }

@@ -1,6 +1,6 @@
-#include<cstdio>
-#include<queue>
-#define IN(x,y,n,m) ((x)&&(x)<=(n)&&(y)&&(y)<=(m))
+#include <cstdio>
+#include <queue>
+#define IN(x, y, n, m) ((x) && (x) <= (n) && (y) && (y) <= (m))
 #define N 1000
 using namespace std;
 
@@ -34,11 +34,11 @@ int dijkstra(int n, int m)
     {
         int x, y, w;
         Node(){};
-        Node(int a, int b, int c) :x(a), y(b), w(c){}
-        bool operator<(const Node& a)const{ return w>a.w; }//¼Æ¦r¤jªº¶¶¦ì¸û§C
+        Node(int a, int b, int c) : x(a), y(b), w(c) {}
+        bool operator<(const Node &a) const { return w > a.w; } //æ•¸å­—å¤§çš„é †ä½è¼ƒä½
     };
 
-    const int dir[4][2] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };//¤W¤U¥ª¥k
+    const int dir[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}}; //ä¸Šä¸‹å·¦å³
 
     priority_queue<Node> PQ;
 
@@ -47,14 +47,14 @@ int dijkstra(int n, int m)
     for (i = 0; i < N; i++)
         for (j = 0; j < N; j++)
         {
-        d[i][j] = 1e9;
-        isVisit[i][j] = false;
+            d[i][j] = 1e9;
+            isVisit[i][j] = false;
         }
 
     d[1][1] = maze[1][1];
     PQ.push(Node(1, 1, d[1][1]));
 
-    int all = n*m;
+    int all = n * m;
     for (i = 0; i < all; i++)
     {
         int next_x = -1, next_y = -1;
@@ -63,7 +63,7 @@ int dijkstra(int n, int m)
         {
             Node node = PQ.top();
             PQ.pop();
-            //¨ú¥XÂ÷°_ÂI³Ìªñ¥B¨S¨«¹LªºÂI
+            //å–å‡ºé›¢èµ·é»æœ€è¿‘ä¸”æ²’èµ°éçš„é»
             if (!isVisit[node.x][node.y])
             {
                 next_x = node.x;
@@ -72,21 +72,21 @@ int dijkstra(int n, int m)
             }
         }
 
-        //¤w¸g§ä§¹
-        if (next_x == -1 || (next.x == n&&next.y == m))
+        //å·²ç¶“æ‰¾å®Œ
+        if (next_x == -1 || (next_x == n && next_y == m))
             break;
 
         isVisit[next_x][next_y] = true;
 
-        //§ó·s°_ÂI³z¹L (next_x,next_y) ¨ì¨ä¥LÂIªº¶ZÂ÷
+        //æ›´æ–°èµ·é»é€é (next_x,next_y) åˆ°å…¶ä»–é»çš„è·é›¢
         for (j = 0; j < 4; j++)
         {
             int x = next_x + dir[j][0], y = next_y + dir[j][1];
             if (IN(x, y, n, m))
                 if (d[next_x][next_y] + maze[x][y] < d[x][y])
                 {
-                d[x][y] = d[next_x][next_y] + maze[x][y];
-                PQ.push(Node(x, y, d[x][y]));
+                    d[x][y] = d[next_x][next_y] + maze[x][y];
+                    PQ.push(Node(x, y, d[x][y]));
                 }
         }
     }
