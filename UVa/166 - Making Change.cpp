@@ -9,7 +9,7 @@ int main()
     const int coin[6] = {5, 10, 20, 50, 100, 200};
     int have[6];
     int dp[N] = {};       //the number of coins
-    int change[201] = {}; //該數目零錢所需的錢幣數
+    int change[201] = {}; //該數目零錢所需的錢幣數(除不盡的零錢數在本題不會使用到)
     for (int i = 5; i < 201; ++i)
     {
         int back = i;
