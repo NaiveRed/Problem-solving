@@ -1,33 +1,27 @@
-#include<cstdio>
-#include<algorithm>
+#include <cstdio>
 
 int main()
 {
+  int cases, L, arr[50];
+  scanf("%d", &cases);
+  for (int c = 0; c < cases; ++c)
+  {
+    scanf("%d", &L);
+    for (int i = 0; i < L; ++i)
+      scanf("%d", &arr[i]);
 
-	int Case;
+    int ans = 0, tmp;
+    for (int i = 0; i < L; ++i)
+      for (int j = 0; j < L - i - 1; ++j)
+        if (arr[j] > arr[j + 1])
+        {
+          tmp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = tmp;
+          ++ans;
+        }
 
-	scanf("%d", &Case);
-
-	while (Case--)
-	{
-		int train[51]{0}, len, count(0);
-
-		scanf("%d", &len);
-
-		for (int i = 0; i < len; i++)
-			scanf("%d", &train[i]);
-
-		for (int i = 0; i < len ; i++)
-			for (int j = 0; j < len - 1 - i; j++)
-				if (train[j]>train[j + 1])
-				{
-			std::swap(train[j], train[j+1]);
-			count++;
-				}
-		
-		printf("Optimal train swapping takes %d swaps.\n", count);
-
-	}
-
-	return 0;
+    printf("Optimal train swapping takes %d swaps.\n", ans);
+  }
+  return 0;
 }

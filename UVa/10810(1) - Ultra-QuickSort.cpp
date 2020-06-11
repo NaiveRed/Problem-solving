@@ -1,74 +1,71 @@
-#include<cstdio>
-#include<cstdlib>
+#include <cstdio>
+#include <cstdlib>
 #define N 500000
 typedef long long LL;
 
-inline int getNum();
-LL merge_sort(int* p_num, int* p_sortArr, int len);//iterative version
-int main()
-{
-    int* p_sortArr = (int*)malloc(N*sizeof(int));
-    int* p_num = (int*)malloc(N*sizeof(int));
-
-    int n;
-
-    while (n = getNum())
-    {
-        for (int i = 0; i < n; i++)
-            p_num[i] = getNum();
-        printf("%lld\n", merge_sort(p_num, p_sortArr, n));
-    }
-
-    free(p_sortArr);
-    free(p_num);
-    return 0;
-}
 inline int getNum()
 {
-    char c;
-    int n = 0;
-    while ((c = getchar()) != '\n')
-        n = n * 10 + c - '0';
-    return n;
+  char c;
+  int n = 0;
+  while ((c = getchar()) != '\n')
+    n = n * 10 + c - '0';
+  return n;
 }
-LL merge_sort(int* p_num, int* p_sortArr, int len)
+//iterative version
+LL merge_sort(int *p_num, int *p_sortArr, int len)
 {
-    LL swap = 0;
+  LL swap = 0;
 
-    for (int seg = 1; seg < len; seg <<= 1)//¤@¥b¤l§Ç¦Cªºªø«×
+  for (int seg = 1; seg < len; seg <<= 1) //ä¸€åŠå­åºåˆ—çš„é•·åº¦
+  {
+    int m = seg << 1; //å­åºåˆ—çš„é•·åº¦
+    for (int start = 0; start < len; start += m)
     {
-        int m = seg << 1;//¤l§Ç¦Cªºªø«×
-        for (int start = 0; start < len; start += m)
+      int left = start;
+      int mid = start + seg - 1 > len - 1 ? len - 1 : start + seg - 1;
+      int right = start + m - 1 > len - 1 ? len - 1 : start + m - 1;
+
+      int s1 = left, end1 = mid;
+      int s2 = mid + 1, end2 = right;
+
+      int idx = left;
+      while (s1 <= end1 && s2 <= end2)
+      {
+        if (p_num[s1] <= p_num[s2])
+          p_sortArr[idx++] = p_num[s1++];
+        else
         {
-            int left = start;
-            int mid = start + seg - 1 > len - 1 ? len - 1 : start + seg - 1;
-            int right = start + m - 1 > len - 1 ? len - 1 : start + m - 1;
-
-            int s1 = left, end1 = mid;
-            int s2 = mid + 1, end2 = right;
-
-            int idx = left;
-            while (s1 <= end1&&s2 <= end2)
-            {
-                if (p_num[s1] <= p_num[s2])
-                    p_sortArr[idx++] = p_num[s1++];
-                else
-                {
-                    p_sortArr[idx++] = p_num[s2++];
-                    swap += end1 - s1 + 1;//¦¸¼Æ¬°¥ª¤l§Ç¦C³Ñ¤UªºÁÙ¨S±Æ§Çªº¼Æ¦r
-                }
-            }
-            while (s1 <= end1)
-                p_sortArr[idx++] = p_num[s1++];
-            while (s2 <= end2)
-                p_sortArr[idx++] = p_num[s2++];
+          p_sortArr[idx++] = p_num[s2++];
+          swap += end1 - s1 + 1; //æ¬¡æ•¸ç‚ºå·¦å­åºåˆ—å‰©ä¸‹çš„é‚„æ²’æŽ’åºçš„æ•¸å­—
         }
-
-        //±N­ì¥»ªº ptr «ü¦V±Æ§Ç¦nªº
-        int *temp = p_num;
-        p_num = p_sortArr;
-        p_sortArr = temp;
+      }
+      while (s1 <= end1)
+        p_sortArr[idx++] = p_num[s1++];
+      while (s2 <= end2)
+        p_sortArr[idx++] = p_num[s2++];
     }
 
-    return swap;
+    //å°‡åŽŸæœ¬çš„ ptr æŒ‡å‘æŽ’åºå¥½çš„
+    int *temp = p_num;
+    p_num = p_sortArr;
+    p_sortArr = temp;
+  }
+
+  return swap;
+}
+int main()
+{
+  static int p_sortArr[N];
+  static int p_num[N];
+
+  int n;
+
+  while (n = getNum())
+  {
+    for (int i = 0; i < n; i++)
+      p_num[i] = getNum();
+    printf("%lld\n", merge_sort(p_num, p_sortArr, n));
+  }
+
+  return 0;
 }
