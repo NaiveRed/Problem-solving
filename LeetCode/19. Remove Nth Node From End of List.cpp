@@ -28,6 +28,7 @@ class Solution {
     return d.next;
   }
 
+  // The memory of removed node should be delete (skip here)
   ListNode* removeNthFromEnd1(ListNode* head, int n) {
     ListNode *h = head, *t = head;
     // h -> ... -> t, the gap between h and t are n-1
