@@ -30,7 +30,7 @@ class Solution {
     if (head == nullptr || head->next == nullptr)  // Final node
       return head;
     // Recursively, the node after `head->next` had been reversed
-    ListNode* tail = reverseList(head->next);
+    ListNode* tail = reverseList2(head->next);
     // Reverse current node and next
     // a -> b becomes a <- b
     head->next->next = head;
