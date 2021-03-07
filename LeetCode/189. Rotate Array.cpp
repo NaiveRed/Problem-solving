@@ -5,10 +5,10 @@ class Solution {
  public:
   // Method 1: T: O(n), S: O(n)
   void rotate(vector<int>& nums, int k) {
-    if (k == 0) return;
     int size = nums.size();
+    if (k == 0|| !(k % size))return;
     vector<int> ans(size);
-    int i = (size - k % size) % size;
+    int i = (size - k % size);
     for (int k = 0; k < size; i = (i + 1) % size, ++k) ans[k] = nums[i];
     nums = ans;
   }
