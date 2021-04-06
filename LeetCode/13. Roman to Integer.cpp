@@ -7,28 +7,28 @@ class Solution {
     int n = 0;
     for (int si = s.size(), i = 0; i < si; ++i) {
       if (s[i] == 'I') {
-        if (s[i + 1] == 'V') {
+        if (i + 1 < si && s[i + 1] == 'V') {
           n += 4;
           ++i;
-        } else if (s[i + 1] == 'X') {
+        } else if (i + 1 < si && s[i + 1] == 'X') {
           n += 9;
           ++i;
         } else
           n += 1;
       } else if (s[i] == 'X') {
-        if (s[i + 1] == 'L') {
+        if (i + 1 < si && s[i + 1] == 'L') {
           n += 40;
           ++i;
-        } else if (s[i + 1] == 'C') {
+        } else if (i + 1 < si && s[i + 1] == 'C') {
           n += 90;
           ++i;
         } else
           n += 10;
       } else if (s[i] == 'C') {
-        if (s[i + 1] == 'D') {
+        if (i + 1 < si && s[i + 1] == 'D') {
           n += 400;
           ++i;
-        } else if (s[i + 1] == 'M') {
+        } else if (i + 1 < si && s[i + 1] == 'M') {
           n += 900;
           ++i;
         } else

@@ -19,15 +19,14 @@ class Solution {
     vector<vector<int>> ans;
     Q.push(root);
     while (!Q.empty()) {
-      vector<int> level;
+      ans.push_back({});
       for (int i = Q.size(); i; --i) {
         TreeNode *node = Q.front();
         Q.pop();
         if (node->left != nullptr) Q.push(node->left);
         if (node->right != nullptr) Q.push(node->right);
-        level.push_back(node->val);
+        ans.back().push_back(node->val);
       }
-      ans.push_back(level);
     }
     return ans;
   }

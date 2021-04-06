@@ -49,3 +49,21 @@ class Solution {
     return true;
   }
 };
+
+
+// Method 2: recursive
+// Time: O(n), Space: O(n) call stack
+class Solution {
+ public:
+  ListNode* global_head;
+  bool isPalindrome(ListNode* head) {
+    global_head = head;
+    return helper(head);
+  }
+  bool helper(ListNode* tail) {
+    if (!tail) return true;
+    if (!helper(tail->next) || global_head->val != tail->val) return false;
+    global_head = global_head->next;
+    return true;
+  }
+};

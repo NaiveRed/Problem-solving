@@ -1,30 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Method 1: Sieve of Eratosthenes, O(n loglog n) from wikipedia
 class Solution {
  public:
-  // Method 1: Sieve of Eratosthenes, O(n loglog n) from wikipedia
   int countPrimes(int n) {
-    if (--n < 2) return 0;
-    vector<bool> not_prime(n + 1, false);
-    not_prime[0] = not_prime[1] = true;
-    int _sqrt = sqrt(n), count = 0;
-    // build not_prime
-    for (int i = 2; i <= _sqrt; ++i) {
-      if (!not_prime[i]) {
+    if (n - 1 < 2) return 0;
+    vector<bool> sieve(n, false);
+    int count = 0, i;
+    for (i = 2; i * i < n; ++i) {
+      if (!sieve[i]) {
+        ++count;
         // k 從 i 開始
         // 小於 i 的質數在前面做過了;合數則可拆成更前面的質數，所以也已做過
-        for (int k = i; i * k <= n; ++k) not_prime[i * k] = true;
+        for (int k = i; k * i < n; ++k) sieve[k * i] = true;
       }
     }
-
-    for (bool b : not_prime)
-      if (!b) ++count;
+    while (i < n) {
+      if (!sieve[i]) ++count;
+      ++i;
+    }
     return count;
   }
+};
 
-  // Method 2: Euler Sieve, O(n)
-  int countPrimes1(int n) {
+// Method 2: Euler Sieve, O(n)
+class Solution1 {
+ public:
+  int countPrimes(int n) {
     if (--n < 2) return 0;
     int count = 0;
     vector<bool> not_prime(n + 1, false);

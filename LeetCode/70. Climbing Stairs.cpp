@@ -1,19 +1,20 @@
+// Ref to 509. Fibonacci Number
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
-public:
-  int count[46] = {1, 1, 2};
-  Solution()
-  {
-    for (int i = 3; i < 46; ++i)
-      count[i] = count[i - 1] + count[i - 2];
-  }
-
-public:
-  int climbStairs(int n)
-  {
-    return count[n];
+// Iterative bottom-up with 2 variables
+// Time: O(n)
+// Space: O(1)
+class Solution {
+ public:
+  int climbStairs(int n) {
+    if (n <= 2) return n;
+    int res = 0, prev1 = 1, prev2 = 2;
+    for (int i = 3; i <= n; ++i) {
+      res = prev1 + prev2;
+      prev1 = prev2;
+      prev2 = res;
+    }
+    return res;
   }
 };

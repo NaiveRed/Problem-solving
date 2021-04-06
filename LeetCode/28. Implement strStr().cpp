@@ -53,13 +53,10 @@ class Solution {
         }
       }
 
-      // Early stop
-      if (z_arr[i] == needle_size) break;
+      // Early stop, find the match.
+      if (z_arr[i] == needle_size) return i - needle_size - 1;
     }
 
-    // Use z array to find the match
-    for (int i = needle_size + 1; i < z_size; ++i)
-      if (z_arr[i] == needle_size) return i - needle_size - 1;
     return -1;
   }
 

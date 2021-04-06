@@ -15,7 +15,7 @@ struct TreeNode
 class Solution
 {
 public:
-    // Method 1: Recursion(DFS)
+    // Method 1: Recursion, bottom-up(DFS)
     int maxDepth(TreeNode *root)
     {
         if (root == nullptr)
@@ -23,7 +23,24 @@ public:
         return max(maxDepth(root->left), maxDepth(root->right)) + 1;
     }
 
-    // Method 2: DFS
+    // Method 2: Recursion, top-down(DFS)
+    void helper(TreeNode *root, int &ans, int depth)
+    {
+        if (!root)
+            return;
+        if (!root->left && !root->right)
+            ans = max(ans, depth);
+        helper(root->left, ans, depth + 1);
+        helper(root->right, ans, depth + 1);
+    }
+    int maxDepth1(TreeNode *root)
+    {
+        int ans = 0;
+        helper(root, ans, 1);
+        return ans;
+    }
+
+    // Method 3: DFS
     typedef pair<int, TreeNode *> LevelNode;
     int maxDepth2(TreeNode *root)
     {
@@ -46,7 +63,7 @@ public:
         return depth;
     }
 
-    // Method 3: BFS
+    // Method 4: BFS
     int maxDepth3(TreeNode *root)
     {
         if (root == nullptr)
