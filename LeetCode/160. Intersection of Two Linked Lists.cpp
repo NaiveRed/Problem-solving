@@ -8,15 +8,15 @@ struct ListNode {
   ListNode(int x) : val(x), next(NULL) {}
 };
 /*
-Assume the common part: c (can be null)
-the remain part of a: a
-the remain part of b: b
-whole a: ac
-whole b: bc
+Assume the common part: 845 (can be null)
+whole a: 41845
+whole b: 561845
 concate two list:
-acbc
-bcac
-they will match the second common part finally
+--------- =============
+4 1 8 4 5 5 6 1 (8 4 5)
+5 6 1 8 4 5 4 1 (8 4 5)
+=========== -----------
+They will match the second common part finally.
 */
 class Solution {
  public:

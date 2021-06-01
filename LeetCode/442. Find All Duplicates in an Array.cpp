@@ -1,4 +1,3 @@
-// Ref: LC. 442
 #include <bits/stdc++.h>
 using namespace std;
 

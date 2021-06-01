@@ -31,7 +31,10 @@ class Solution1 {
         if (bit_mask & k) ++bcount1;
         if (bit_mask & nums[k]) ++bcount2;
       }
-      if (bcount2 > bcount1)  // count2>count1 (more than one number)
+      // Only consider the bit we get more than bcount1. E.g. [2,2,2,2,2]
+      // if bcount1>bcount2, we still do not know the bit
+      // (only know miss some number)
+      if (bcount2 > bcount1)
         ans |= bit_mask;      // It's 1 for the duplicate number at this bit.
     }
     return ans;

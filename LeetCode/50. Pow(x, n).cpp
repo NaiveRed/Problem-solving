@@ -17,7 +17,7 @@ class Solution {
   }
 };
 
-// Method 2: Binary exponentiation by tail recursion. (top-down)
+// Method 2: Binary exponentiation by tail recursion. (bottom-up?)
 // Time: O(log n)
 // Space: O(1) constant call stack
 class Solution1 {
